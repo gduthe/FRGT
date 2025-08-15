@@ -1,4 +1,4 @@
-# FRGT: Flow Reconstructing Graph Transformer
+# FRGT: Flow Reconstruction Graph Transformer
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/release/python-380/)
@@ -19,7 +19,7 @@ FRGT (Flow Reconstructing Graph Transformer) is designed to reconstruct complete
 ## Key Features
 
 - ⚡ **Efficient reconstruction** from sparse pressure measurements
-- 🔄 **Multiple processor types**: HGT, Reversible GNN, Interleaved HGT
+- 🔄 **Multiple processor types**: HGT, Interleaved HGT or Reversible GNN
 - 📐 **Optional physics-aware training** using the divergence loss
 - 🎯 **Configurable coverage** for airfoil measurements (0-100%)
 
