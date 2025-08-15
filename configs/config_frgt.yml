@@ -1,0 +1,51 @@
+# settings for executing the run
+run_settings:
+  validate: True    # whether to validate the model during training
+  num_t_workers: 6  # number of workers for training data loader
+  num_v_workers: 2  # number of workers for validation data loader
+
+# settings that handle the io
+io_settings:
+  train_dataset_path: 'B:\datasets\FRGT_dataset\train_dataset.zip'
+  valid_dataset_path: 'B:\datasets\FRGT_dataset\valid_dataset.zip'
+  run_dir: './runs'
+  save_epochs: 10       # how often to save the model during training
+  pretrained_model: ''  # path to pretrained model, leave empty string if not using pretrained model          
+   
+# training hyperparameters
+hyperparameters:
+  batch_size: 1               # batch size for training (number of graphs per batch)
+  epochs: 500                 # number of epochs to train the model
+  start_lr: 5e-4              # initial learning rate
+  weight_decay: 1e-4          # weight decay for optimizer
+  div_loss_factor: 0.0        # factor for divergence loss
+  random_masking: False       # whether to use random masking during training
+  rd_in_polar_coords: False   # whether to use polar coordinates for relative distance edge features
+  zero_augmentation: False    # whether to use zero augmentation during training
+  sdf_input: True             # whether to use the signed distance function as an input node feature
+  airfoil_coverage: 1.0       # coverage of the airfoil in the input data (1.0 means full coverage)
+
+# model architecture settings
+model_settings:
+  use_est_globals: False      # whether to used estimated global features as input to node encoder
+  latent_dim: 160             # dimension of the latent space
+  fp_steps: 30                # number of feature propagation steps
+  noise_sigma: 0.0            # standard deviation of noise added to the node features
+  processor_type: 'hgt'       # processor type options: 'rev' for reversible GNN, 'hgt' for hybrid graph transformer, 'hgt_it' for hybrid graph transformer with interleaved layers
+
+  encoder_settings:
+    num_enc_mlp_layers: 3     # number of MLP layers in the encoder
+    dropout: 0.0              # dropout rate for the encoder
+
+  processor_settings:
+    mp_type: 'GEN'            # message-passing type, options: 'GAT' for Graph Attention Network, 'GEN' for Generalized Graph Network, 'GINE' for Graph Isomorphism Network
+    num_mp_steps: 10          # number of message-passing steps
+    num_gt_steps: 1           # number of graph transformer steps after the message-passing
+    attn_type: 'galerkin'     # type of attention to use, options: 'classic' for typical softmax attention, 'galerkin' for Galerkin attention (linear attention)
+    num_heads: 8              # number of attention heads
+    dim_head: 16              # dimension of each attention head
+    dropout: 0.0              # dropout rate for the processor
+
+  decoder_settings:
+    num_dec_mlp_layers: 3     # number of MLP layers in the decoder
+    dropout: 0.0              # dropout rate for the decoder

@@ -1,0 +1,1 @@
+from .frgt import FRGT
